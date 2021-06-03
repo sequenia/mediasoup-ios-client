@@ -30,7 +30,7 @@ Pod::Spec.new do |spec|
 	# Include frameworks needed for WebRTC
   spec.frameworks = "AVFoundation", "AudioToolbox", "CoreAudio", "CoreMedia", "CoreVideo"
 
-  spec.vendored_frameworks = "build/mediasoup_client_ios.framework", "mediasoup-client-ios/dependencies/webrtc/src/out_ios_libs/WebRTC.framework"
+  spec.vendored_frameworks = "mediasoup_client_ios.framework", "WebRTC.framework"
 
   spec.module_map = "mediasoup-client-ios/mediasoup_ios_client.modulemap"
 end
