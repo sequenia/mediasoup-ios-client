@@ -26,9 +26,6 @@ Pod::Spec.new do |spec|
     "VALID_ARCHS" => "$(ARCHS_STANDARD_64_BIT)",
     "OTHER_LD_FLAGS" => "-all_load",
   }
-	
-  spec.xcconfig = { 'OTHER_LDFLAGS' => '-framework WebRTC' }
-
 	# Include frameworks needed for WebRTC
   spec.frameworks = "AVFoundation", "AudioToolbox", "CoreAudio", "CoreMedia", "CoreVideo"
 
