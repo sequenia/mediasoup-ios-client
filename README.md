@@ -1,4 +1,4 @@
-# mediasoup-ios-client Sequenia
+# mediasoup-ios-client
 
 Objective-C wrapper library for libmediasoupclient for building mediasoup iOS based applications.
 
