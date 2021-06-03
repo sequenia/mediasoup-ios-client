@@ -18,7 +18,6 @@ Pod::Spec.new do |spec|
   spec.requires_arc = false
 	# Set the xcode variables for the pod target
   spec.pod_target_xcconfig = {
-    "FRAMEWORK_SEARCH_PATHS" => ""${PODS_ROOT}/mediasoup_ios_client/mediasoup-client-ios/dependencies/webrtc/src/out_ios_libs"",
     "USE_HEADERMAP" => "NO",
     "ALWAYS_SEARCH_USER_PATHS" => "NO",
     "CLANG_CXX_LANGUAGE_STANDARD" => "c++14",
