@@ -60,8 +60,6 @@ cd $BUILD_DIRECTORY/tempBuild/mediasoup-ios-client/mediasoup-client-ios/dependen
 
 mv $BUILD_DIRECTORY/tempBuild/webrtc-ios/src/third_party $BUILD_DIRECTORY/tempBuild/mediasoup-ios-client/mediasoup-client-ios/dependencies/webrtc/src
 
-cp $BUILD_DIRECTORY/supportFiles/CMakeLists.txt $BUILD_DIRECTORY/tempBuild/mediasoup-ios-client/mediasoup-client-ios/dependencies/
-
 # build iOS arm64
 cmake . -Bbuild -DLIBWEBRTC_INCLUDE_PATH=$BUILD_DIRECTORY/tempBuild/mediasoup-ios-client/mediasoup-client-ios/dependencies/webrtc/src -DLIBWEBRTC_BINARY_PATH=$BUILD_DIRECTORY/tempBuild/mediasoup-ios-client/mediasoup-client-ios/dependencies/webrtc/src/out_ios_libs/universal -DMEDIASOUP_LOG_TRACE=ON -DMEDIASOUP_LOG_DEV=ON -DCMAKE_CXX_FLAGS="-fvisibility=hidden" -DLIBSDPTRANSFORM_BUILD_TESTS=OFF -DIOS_SDK=iphone -DIOS_ARCHS="arm64" -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/
 
