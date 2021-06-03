@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
-  spec.name         = "mediasoup_ios_client"
+  spec.name         = "mediasoup_ios_client_sequenia"
   spec.version      = "1.5.4"
-  spec.summary      = "Mediasoup 3 iOS Client"
+  spec.summary      = "Mediasoup 3 iOS Client sequenia"
 
   spec.description  = <<-DESC
     iOS implementation of libmediasoupclient
@@ -18,7 +18,6 @@ Pod::Spec.new do |spec|
   spec.requires_arc = false
 	# Set the xcode variables for the pod target
   spec.pod_target_xcconfig = {
-    "HEADER_SEARCH_PATHS": "\"$(inherited)\" \"${PODS_ROOT}/Headers/Public/mediasoup-ios-client/dependencies/webrtc/src\" \"${PODS_ROOT}/Headers/Public/mediasoup-ios-client/include\" \"${PODS_ROOT}/Headers/Public/mediasoup-ios-client/include/wrapper\" \"${PODS_ROOT}/Headers/Public/mediasoup-ios-client/dependencies/libmediasoupclient/include\" \"${PODS_ROOT}/Headers/Public/mediasoup-ios-client/dependencies/libmediasoupclient/deps/libsdptransform/include\" \"${PODS_ROOT}/Headers/Public/mediasoup-ios-client/webrtc\" \"${PODS_ROOT}/Headers/Public/mediasoup-ios-client/dependencies/webrtc/src/third_party/abseil-cpp\"",
     "USE_HEADERMAP" => "NO",
     "ALWAYS_SEARCH_USER_PATHS" => "NO",
     "CLANG_CXX_LANGUAGE_STANDARD" => "c++14",
