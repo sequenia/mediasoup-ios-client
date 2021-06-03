@@ -51,6 +51,11 @@ https://github.com/ethand91/mediasoup-ios-client/blob/master/documentation/Api.m
 
 https://github.com/ethand91/mediasoup-ios-client/blob/master/documentation/Installation.md
 
+#### Update dependencies (webrtc and libmediasoup)
+
+https://github.com/sequenia/mediasoup-ios-client/blob/master/documentation/updateDependencies.md
+
+
 ## Usage Example
 
 ```objective-c
