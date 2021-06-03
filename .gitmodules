@@ -1,6 +1,6 @@
 [submodule "mediasoup-client-ios/dependencies/libmediasoupclient"]
 	path = mediasoup-client-ios/dependencies/libmediasoupclient
-	url = https://github.com/sequenia/libmediasoupclient.git
+	url = https://github.com/sequenia/libmediasoupclient/tree/v3
 [submodule "mediasoup-client-ios/dependencies/webrtc/src"]
 	path = mediasoup-client-ios/dependencies/webrtc/src
 	url = https://github.com/sequenia/webrtc-mac-src.git
