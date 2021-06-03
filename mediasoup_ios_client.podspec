@@ -22,11 +22,12 @@ Pod::Spec.new do |spec|
     "ALWAYS_SEARCH_USER_PATHS" => "NO",
     "CLANG_CXX_LANGUAGE_STANDARD" => "c++14",
     "CLANG_CXX_LIBRARY" => "libc++",
-	  'OTHER_LDFLAGS' => '-framework MyVendoredFramework',
     "OTHER_CPLUSPLUSFLAGS" => '"-stdlib=libc++" "-Wall" "-Wextra" "-Wpedantic"',
     "VALID_ARCHS" => "$(ARCHS_STANDARD_64_BIT)",
     "OTHER_LD_FLAGS" => "-all_load",
   }
+	
+  spec.xcconfig = { 'OTHER_LDFLAGS' => '-framework WebRTC' }
 
 	# Include frameworks needed for WebRTC
   spec.frameworks = "AVFoundation", "AudioToolbox", "CoreAudio", "CoreMedia", "CoreVideo"
