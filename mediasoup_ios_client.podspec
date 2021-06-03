@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
-  spec.name         = "mediasoup_ios_client_sequenia"
+  spec.name         = "mediasoup_ios_client"
   spec.version      = "1.5.4"
-  spec.summary      = "Mediasoup 3 iOS Client sequenia"
+  spec.summary      = "Mediasoup 3 iOS Client"
 
   spec.description  = <<-DESC
     iOS implementation of libmediasoupclient
