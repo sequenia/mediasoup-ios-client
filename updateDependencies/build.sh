@@ -23,6 +23,8 @@ export PATH=$BUILD_DIRECTORY/tempBuild/depot_tools:$PATH
 # get mediasoup-ios-client
 git clone --recurse-submodules https://github.com/sequenia/mediasoup-ios-client.git
 
+git clone https://github.com/sequenia/libmediasoupclient.git $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/
+
 # get the WebRTC iOS code
 mkdir webrtc-ios
 cd webrtc-ios
@@ -78,10 +80,9 @@ lipo -create build/libmediasoupclient/libsdptransform/libsdptransform.a build_86
 cp libmediasoupclient/lib/libmediasoupclient.a $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/libmediasoupclient/lib
 cp libmediasoupclient/lib/libsdptransform.a $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/libmediasoupclient/lib
 
-mv $BUILD_DIRECTORY/tempBuild/mediasoup-ios-client/mediasoup-client-ios/dependencies/webrtc/src/third_party $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/webrtc/src/
-
 # clear temp
 #rm -rf $BUILD_DIRECTORY/tempBuild
 
 open $PROJECT_DIRECTORY/mediasoup-client-ios.xcodeproj
+
 
