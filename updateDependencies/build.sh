@@ -23,13 +23,15 @@ export PATH=$BUILD_DIRECTORY/tempBuild/depot_tools:$PATH
 # get mediasoup-ios-client
 git clone --recurse-submodules https://github.com/sequenia/mediasoup-ios-client.git
 
-git clone https://github.com/sequenia/libmediasoupclient.git $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/libmediasoupclient
+rm -rf mediasoup-ios-client/mediasoup-client-ios/dependencies/libmediasoupclient
+
+git clone https://github.com/sequenia/libmediasoupclient.git mediasoup-ios-client/mediasoup-client-ios/dependencies/libmediasoupclient
 
 # get the WebRTC iOS code
 mkdir webrtc-ios
 cd webrtc-ios
 fetch --nohooks webrtc_ios
-gclient sync
+gclient syncs
 cd src
 git checkout -b m84 refs/remotes/branch-heads/4147
 gclient sync
@@ -44,15 +46,16 @@ python tools_webrtc/ios/build_ios_libs.py --extra-gn-args='is_component_build=fa
 cd out_ios_libs
 
 ninja -C arm64_libs/ webrtc
-ninja -C x64_libs/ webrtc
 
 mkdir universal
 
 # create a FAT libwebrtc static library
-lipo -create arm64_libs/obj/libwebrtc.a x64_libs/obj/libwebrtc.a -output universal/libwebrtc.a
+lipo -create arm64_libs/obj/libwebrtc.a -output universal/libwebrtc.a
 
 cp -r $BUILD_DIRECTORY/tempBuild/mediasoup-ios-client/mediasoup-client-ios/dependencies/webrtc/src/ $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/webrtc/src
-cp -r $BUILD_DIRECTORY/tempBuild/mediasoup-ios-client/mediasoup-client-ios/dependencies/libmediasoupclient/ $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/libmediasoupclient
+
+rm -rf $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/libmediasoupclient
+cp -r $BUILD_DIRECTORY/tempBuild/mediasoup-ios-client/mediasoup-client-ios/dependencies/libmediasoupclient $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/
 
 # copy library file
 cp -r $BUILD_DIRECTORY/tempBuild/webrtc-ios/src/out_ios_libs $BUILD_DIRECTORY/tempBuild/mediasoup-ios-client/mediasoup-client-ios/dependencies/webrtc/src/
@@ -67,22 +70,21 @@ cmake . -Bbuild -DLIBWEBRTC_INCLUDE_PATH=$BUILD_DIRECTORY/tempBuild/mediasoup-io
 
 make -C build
 
-# Build x86_64 simulator
-cmake . -Bbuild_86_64 -DLIBWEBRTC_INCLUDE_PATH=$BUILD_DIRECTORY/tempBuild/mediasoup-ios-client/mediasoup-client-ios/dependencies/webrtc/src -DLIBWEBRTC_BINARY_PATH=$BUILD_DIRECTORY/tempBuild/mediasoup-ios-client/mediasoup-client-ios/dependencies/webrtc/src/out_ios_libs/universal -DMEDIASOUP_LOG_TRACE=ON -DMEDIASOUP_LOG_DEV=ON -DCMAKE_CXX_FLAGS="-fvisibility=hidden" -DLIBSDPTRANSFORM_BUILD_TESTS=OFF -DIOS_SDK=iphonesimulator -DIOS_ARCHS="x86_64" -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
-
-make -C build_86_64
-
 # create a FAT libmediasoup/libsdptransform library
-lipo -create build/libmediasoupclient/libmediasoupclient.a build_86_64/libmediasoupclient/libmediasoupclient.a -output libmediasoupclient/lib/libmediasoupclient.a
-lipo -create build/libmediasoupclient/libsdptransform/libsdptransform.a build_86_64/libmediasoupclient/libsdptransform/libsdptransform.a -output libmediasoupclient/lib/libsdptransform.a
+mkdir $BUILD_DIRECTORY/tempBuild/mediasoup-ios-client/mediasoup-client-ios/dependencies/libmediasoupclient/lib
+
+lipo -create build/libmediasoupclient/libmediasoupclient.a -output libmediasoupclient/lib/libmediasoupclient.a
+lipo -create build/libmediasoupclient/libsdptransform/libsdptransform.a -output libmediasoupclient/lib/libsdptransform.a
 
 # copy libraries files
-cp libmediasoupclient/lib/libmediasoupclient.a $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/libmediasoupclient/lib
-cp libmediasoupclient/lib/libsdptransform.a $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/libmediasoupclient/lib
+mkdir $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/libmediasoupclient/lib
+
+cp libmediasoupclient/lib/libmediasoupclient.a $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/libmediasoupclient/lib/
+cp libmediasoupclient/lib/libsdptransform.a $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/libmediasoupclient/lib/
 
 # clear temp
 #rm -rf $BUILD_DIRECTORY/tempBuild
 
+mv $BUILD_DIRECTORY/tempBuild/mediasoup-ios-client/mediasoup-client-ios/dependencies/webrtc/src/third_party $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/webrtc/src
+
 open $PROJECT_DIRECTORY/mediasoup-client-ios.xcodeproj
-
-

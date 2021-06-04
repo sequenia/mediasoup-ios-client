@@ -102,6 +102,18 @@ public:
         
         return promise.get_future();
     };
+    
+    std::future<std::string> OnProduceData(
+                                           mediasoupclient::SendTransport* transport,
+                                           const nlohmann::json& sctpStreamParameters,
+                                           const std::string& label,
+                                           const std::string& protocol,
+                                           const nlohmann::json& appData) override {
+        
+        std::promise<std::string> promise;
+
+        return promise.get_future();
+    };
 };
 
 class OwnedRecvTransport {
