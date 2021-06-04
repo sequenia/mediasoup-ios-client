@@ -23,7 +23,7 @@ export PATH=$BUILD_DIRECTORY/tempBuild/depot_tools:$PATH
 # get mediasoup-ios-client
 git clone --recurse-submodules https://github.com/sequenia/mediasoup-ios-client.git
 
-git clone https://github.com/sequenia/libmediasoupclient.git $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/
+git clone https://github.com/sequenia/libmediasoupclient.git $PROJECT_DIRECTORY/mediasoup-client-ios/dependencies/libmediasoupclient
 
 # get the WebRTC iOS code
 mkdir webrtc-ios
