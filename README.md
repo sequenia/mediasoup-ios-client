@@ -49,10 +49,6 @@ Bridging header sample:
 
 https://github.com/ethand91/mediasoup-ios-client/blob/master/documentation/Api.md
 
-#### INSTALLATION (Only needed for development, not needed if you only intent to use the project)
-
-https://github.com/ethand91/mediasoup-ios-client/blob/master/documentation/Installation.md
-
 #### Update dependencies (webrtc and libmediasoup)
 
 https://github.com/sequenia/mediasoup-ios-client/blob/master/documentation/updateDependencies.md
