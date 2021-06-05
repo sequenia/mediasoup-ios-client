@@ -27,7 +27,7 @@ Add the below into your Podfile:
 use_frameworks!
 
 target "target" do
-  pod "mediasoup_ios_client"
+  pod 'mediasoup_ios_client', :git => 'https://github.com/sequenia/mediasoup-ios-client.git'
 end
 ```
 
