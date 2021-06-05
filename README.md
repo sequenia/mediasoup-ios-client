@@ -39,7 +39,9 @@ Due to the size of the WebRTC.framework with bitcode, it cannot be uploaded to G
 
 Bridging header sample:
 
-https://github.com/ethand91/mediasoup-ios-client-sample/blob/master/mediasoup-ios-cient-sample/mediasoup-ios-cient-sample-Bridging-Header.h
+```objective-c
+#import "mediasoup_client_ios/Mediasoupclient.h
+```
 
 ## Documentation
 
@@ -145,4 +147,3 @@ git clone https://github.com/ethand91/mediasoup-ios-client.git
 git submodule init
 git submodule update
 ```
- 
