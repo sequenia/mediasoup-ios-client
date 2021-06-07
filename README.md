@@ -51,6 +51,8 @@ https://github.com/ethand91/mediasoup-ios-client/blob/master/documentation/Api.m
 
 #### Update dependencies (webrtc and libmediasoup)
 
+Данный репоизиторий содержит проект для работы mediasoupclient под iOS. Проект является форком от https://github.com/ethand91/mediasoup-ios-client с обновленными зависимостями. Проект построен на двух зависимостях - WebRTC и mediasoupclient. Для того, чтобы пересобрать проект необходимо следовать инструкции ниже.
+
 https://github.com/sequenia/mediasoup-ios-client/blob/master/documentation/updateDependencies.md
 
 
