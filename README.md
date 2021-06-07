@@ -131,15 +131,3 @@ RTCVideoTrack *videoTrack = [factory videoTrackWithSource:videoSource trackId:@"
 // Produce out camera video
 Producer *videoProducer = [sendTransport produce:producerHandler.delegate track:videoTrack encodings:nil codecOptions:nil];
 ```
-
-## Contributing
-
-### Clone the repo and install submodules
-
-Due to the size of the WebRTC static library it cannot be uploaded to Github, therefore you will need to follow the instructions in the build folder and build it yourself. (This step is only needed for development, not for library usage)
-
-```bash
-git clone https://github.com/ethand91/mediasoup-ios-client.git
-git submodule init
-git submodule update
-```
