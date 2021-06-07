@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.license      = "MIT"
   spec.author       = { "ethand91" => "ethan@maru.jp" }
   spec.platform     = :ios, "9.0"
-  spec.source       = { :git => "https://github.com/sequenia/mediasoup-ios-client.git", :submodules => true, :tag => "1.5.5" }
+  spec.source       = { :git => "https://github.com/sequenia/mediasoup-ios-client.git", :tag => "1.5.5" }
   spec.module_name = "mediasoup"
 
 	# Disable arc
