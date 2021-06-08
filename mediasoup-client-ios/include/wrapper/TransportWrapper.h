@@ -77,8 +77,7 @@ public:
         [this->listener onConnectionStateChange:sendTransport connectionState:[NSString stringWithUTF8String:connectionState.c_str()]];
     };
     
-    std::future<std::string> OnProduce(
-                                       mediasoupclient::SendTransport *nativeTransport,
+    std::future<std::string> OnProduce(mediasoupclient::SendTransport *nativeTransport,
                                        const std::string &kind,
                                        nlohmann::json rtpParameters,
                                        const nlohmann::json &appData) override {
@@ -92,10 +91,11 @@ public:
         __block std::promise<std::string> promise;
         
         [this->listener onProduce:sendTransport
-            kind: [NSString stringWithUTF8String: kind.c_str()]
-            rtpParameters: [NSString stringWithUTF8String: rtpParametersString.c_str()]
-            appData: [NSString stringWithUTF8String:appDataString.c_str()]
-            callback: ^(NSString* id) {
+                             kind: [NSString stringWithUTF8String: kind.c_str()]
+                    rtpParameters: [NSString stringWithUTF8String: rtpParametersString.c_str()]
+                          appData: [NSString stringWithUTF8String:appDataString.c_str()]
+                         callback: ^(NSString* id) {
+            
                 promise.set_value(std::string([id UTF8String]));
             }
          ];
@@ -103,14 +103,30 @@ public:
         return promise.get_future();
     };
     
-    std::future<std::string> OnProduceData(
-                                           mediasoupclient::SendTransport* transport,
+    std::future<std::string> OnProduceData(mediasoupclient::SendTransport* transport,
                                            const nlohmann::json& sctpStreamParameters,
                                            const std::string& label,
                                            const std::string& protocol,
                                            const nlohmann::json& appData) override {
         
-        std::promise<std::string> promise;
+        const std::string sctpStreamParametersString = sctpStreamParameters.dump();
+        const std::string appDataString = appData.dump();
+        
+        NSValue * transportObject = [NSValue valueWithPointer:transport];
+        SendTransport *sendTransport = [[SendTransport alloc] initWithNativeTransport:transportObject];
+        
+        __block std::promise<std::string> promise;
+        
+        [this->listener OnProduceData: sendTransport
+                 sctpStreamParameters: [NSString stringWithUTF8String: sctpStreamParametersString.c_str()]
+                                label: [NSString stringWithUTF8String: label.c_str()]
+                             protocol: [NSString stringWithUTF8String: protocol.c_str()]
+                              appData: [NSString stringWithUTF8String: appDataString.c_str()]
+                             callback: ^(NSString* id) {
+            
+                promise.set_value(std::string([id UTF8String]));
+            }
+        ];
 
         return promise.get_future();
     };

@@ -53,7 +53,28 @@
     @param appData Custom application data (given in the transport.producer() method)
     @param callback Callback that receives the id of the producer
  */
--(void)onProduce:(Transport *)transport kind:(NSString *)kind rtpParameters:(NSString *)rtpParameters appData:(NSString *)appData callback:(void(^)(NSString *))callback;
+-(void)onProduce:(Transport *)transport
+            kind:(NSString *)kind
+   rtpParameters:(NSString *)rtpParameters
+         appData:(NSString *)appData
+        callback:(void(^)(NSString *))callback;
+
+/*!
+    @brief Emitted when the transport needs to transmit information about a new data producer to the associated server side transport.
+    @discussion This event occurs <b>before</b> the produceData() method completes.
+    @param transport SendTransport instance
+    @param sctpStreamParameters Producer's SCTP parameters
+    @param label A label which can be used to distinguish this DataChannel from others.
+    @param protocol Name of the sub-protocol used by this DataChannel.
+    @param appData Custom application data (given in the transport.producer() method)
+    @param callback Callback that receives the id of the producer
+ */
+-(void)OnProduceData:(Transport *)transport
+sctpStreamParameters:(NSString *)sctpStreamParameters
+               label:(NSString *)label
+            protocol:(NSString *)protocol
+             appData:(NSString *)appData
+            callback:(void(^)(NSString *))callback;
 @end
 
 #endif /* SendTransport_h */
